@@ -58,22 +58,46 @@ if __name__ == "__main__":
         innerDf  : DataFrame = studentsDf.join(subjectsDf, studentsDf.studentId == subjectsDf.studentId, how= "inner").orderBy(studentsDf.studentId )
         innerDf.show()
         
+        print("註冊TempView，才能使用TempView")
+        studentsDf.createOrReplaceTempView("students")
+        subjectsDf.createOrReplaceTempView("subjects")
+        
+        testStudentDf  :DataFrame = spark.sql("select * from  students")
+        testStudentDf.show()
+        
+        testSubjectsDf  :DataFrame = spark.sql("select * from  subjects")
+        testSubjectsDf.show() 
+        
+        print("Step 5-4-2. Performing an Inner Join on TempView")
+        testInnerDf  :DataFrame = spark.sql("select * from  students  inner join subjects on students.studentId = subjects.studentId")
+        testInnerDf.show() 
+        
         # Step 5-4-3. Performing a Left Outer Join on DataFrames
         print("Step 5-4-3. Performing a Left Outer Join on DataFrames")
         leftOuterDf  : DataFrame = studentsDf.join(subjectsDf, studentsDf.studentId == subjectsDf.studentId, how= "left")
         leftOuterDf.show()
+        
+        print("Step 5-4-3. Performing a Left Outer Join on TempView")
+        testLeftOuterDf  :DataFrame = spark.sql("select * from  students  left join subjects on students.studentId = subjects.studentId")
+        testLeftOuterDf.show() 
         
         # Step 5-4-4. Performing a Right Outer Join on DataFrames
         print("Step 5-4-4. Performing a Right Outer Join on DataFrames")
         rightOuterDf : DataFrame = studentsDf.join(subjectsDf, studentsDf.studentId == subjectsDf.studentId, how= "right")
         rightOuterDf.show()
         
+        print("Step 5-4-4. Performing a Right Outer Join on TempView")
+        testRightOuterDf  :DataFrame = spark.sql("select * from  students  right join subjects on students.studentId = subjects.studentId")
+        testRightOuterDf.show() 
+        
         # Step 5-4-5. Performing a Full Outer Join on DataFrames
         print("Step 5-4-5. Performing a Full Outer Join on DataFrames")
         outerDf = studentsDf.join(subjectsDf, studentsDf.studentId == subjectsDf.studentId, how= "outer")
         outerDf.show()
         
-         
+        print("Step 5-4-5. Performing a Full Outer Join on TempView")
+        testOuterDf  :DataFrame = spark.sql("select * from  students  full join subjects on students.studentId = subjects.studentId")
+        testOuterDf.show() 
         
         
         
