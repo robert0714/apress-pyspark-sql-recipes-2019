@@ -8,7 +8,6 @@ from pyspark.sql.dataframe import DataFrame
 from refactor01.spark_config import PySpakCassandraConfig
 from refactor01.spark_config import PySpakMSSQLConfig
 import logging
-from idlelib.idle_test.test_configdialog import keyspage
 
 class Recipe5_4(object):
 
