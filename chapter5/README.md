@@ -6,13 +6,13 @@ CREATE KEYSPACE pysparksqlbook
 	WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':'1'}
 	AND DURABLE_WRITES = true;
  
-CREATE TABLE "pysparksqlbook"."subjects"  ( 
+CREATE TABLE "pysparksqlbook"."students"  ( 
 	"studentId"	varchar,
 	"name" 	varchar,
 	"gender"   varchar,
 	PRIMARY KEY("studentId")
 ) WITH
-	"caching"={'keys':'NONE', 'rows_per_partition':'NONE'}
+	"caching"={'keys':'NONE', 'rows_per_partition':'NONE'};
 
 INSERT INTO pysparksqlbook.students("studentId", "name", "gender") VALUES('si1', 'Robin', 'M');
 INSERT INTO pysparksqlbook.students("studentId", "name", "gender") VALUES('si2', 'Maria', 'F');
@@ -41,3 +41,7 @@ insert  into  pysparksqlbook.subjects("id","studentId", "subject", "marks")    v
  
 
 ```
+ print("註冊TempView，才能使用TempView") :
+ 
+ ${DataFrame}.createOrReplaceTempView("students")
+  
