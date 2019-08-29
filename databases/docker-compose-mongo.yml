@@ -1,0 +1,18 @@
+version: '3.7'
+# https://docs.microsoft.com/zh-tw/sql/linux/quickstart-install-connect-docker?view=sql-server-2017&pivots=cs1-bash
+# https://github.com/Microsoft/azuredatastudio
+# docker-machine create default --virtualbox-memory "3096"          
+# sqlservr: This program requires a machine with at least 2000 megabytes of memory.
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+    - "27017:27017"    
+    volumes:
+    - $PWD/data/mongodb:/data/db
+    environment:
+    - MONGODB_DATABASE=ec
+    - TZ=Asia/Taipei
+#   network_mode:  "host"
+# mac系統無法使用network host

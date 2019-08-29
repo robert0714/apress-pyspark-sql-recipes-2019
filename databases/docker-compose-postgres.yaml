@@ -1,0 +1,15 @@
+
+version: "3.3"
+services:
+   db:
+     image: postgres:11.3
+     container_name: pyspark-postgres
+     volumes:
+       - $PWD/postgres:/var/lib/postgresql/data
+     ports:
+        - "5432:5432" 
+     environment:
+       - POSTGRES_USER=sonar
+       - POSTGRES_PASSWORD=sonar
+       - POSTGRES_DB=pysparkbookdb
+       - TZ=Asia/Taipei
